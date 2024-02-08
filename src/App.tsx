@@ -1,9 +1,27 @@
+import { useState } from 'react'
 import logo from './assets/logo-nlw-expert.svg'
-import { NewCard } from './components/NewCard'
+import { NewNoteCard } from './components/NewCard'
 import { NoteCard } from './components/NoteCard'
 
 
-export function App() {
+
+export function App() { 
+  const [notes, setNotes] = useState([
+    { id: 1, date: new Date(),content: 'Salamaleco'},
+    { id: 2, date: new Date(),content: 'Salamaleca'},
+  ]) 
+
+
+function onNoteCreated(content:string) {
+  const newNote = {
+    id: Math.random(), 
+    date: new Date(), 
+    content,
+  } 
+
+  setNotes([newNote, ...notes])
+}
+
   return (  
     <div className='mx-auto max-w-6xl my-12 space-y-6'> 
       <img src={logo} alt="logo nlw expert" />  
@@ -20,11 +38,12 @@ export function App() {
       <div className='h-px bg-slate-700'/>
 
 
-      <div className="grid grid-cols-3 gap-6 auto-rows-[250px]"> 
-        <NewCard/>
-        <NoteCard/> 
-        <NoteCard/> 
-        <NoteCard/> 
+      <div className="grid grid-cols-3 gap-6 auto-rows-[250px]">  
+        <NewNoteCard onNoteCreated={onNoteCreated}/>
+        
+        {notes.map(note => {
+          return <NoteCard key={note.id} note={note}/>
+        })}
         
       
       </div>
