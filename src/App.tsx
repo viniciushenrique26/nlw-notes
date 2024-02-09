@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from 'react'
 import logo from './assets/logo-nlw-expert.svg'
 import { NewNoteCard } from './components/NewCard'
 import { NoteCard } from './components/NoteCard'
+import Logo from './assets/Logo.png' 
 
 interface Note {
   id: string 
@@ -65,8 +66,11 @@ const filteredNotes = search !== ''
 
 
   return (  
-    <div className='mx-auto max-w-6xl my-12 space-y-6 px-5 '> 
-      <img src={logo} alt="logo nlw expert" />  
+    <div className='mx-auto max-w-6xl my-12 space-y-6 px-5 '>  
+      <div className='flex flex-rol justify-between align-center'> 
+        <img src={logo} alt="logo nlw expert"  />   
+        <img src={Logo} alt="logo nlw" className='animate-spin w-10 h-10' />
+      </div>
 
       <form className='w-full'>  
         <input 
